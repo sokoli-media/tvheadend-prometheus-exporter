@@ -17,9 +17,6 @@ func RunHTTPServer(logger *slog.Logger, config TvheadendConfig) {
 	go CollectTvheadendMetrics(logger, config, &wg, quitTvMetrics)
 
 	http.Handle("/metrics", promhttp.Handler())
-	http.HandleFunc("/dashboard.json", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "/dashboards/dashboard.json")
-	})
 
 	sigIntChannel := make(chan os.Signal, 1)
 	signal.Notify(sigIntChannel, os.Interrupt)
