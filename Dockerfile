@@ -15,6 +15,5 @@ FROM debian:latest
 
 RUN apt-get update && apt-get install -y intel-gpu-tools && apt-get clean
 COPY --from=build /prometheus-exporter /prometheus-exporter
-COPY /dashboards /dashboards
 
 ENTRYPOINT ["/prometheus-exporter"]
